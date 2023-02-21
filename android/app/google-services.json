@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "113401667285",
+    "project_id": "sensware-8114f",
+    "storage_bucket": "sensware-8114f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113401667285:android:be3d0b460a081cd77b8c5c",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113401667285-mbuc9n2c7gstdalejk780l4024v3fam6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxqMKtaHKKr2Pnkaljo2H71Uvkh94r1BE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113401667285-mbuc9n2c7gstdalejk780l4024v3fam6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113401667285:android:8eb8788dc72a71f27b8c5c",
+        "android_client_info": {
+          "package_name": "com.example.senseware"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113401667285-mbuc9n2c7gstdalejk780l4024v3fam6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxqMKtaHKKr2Pnkaljo2H71Uvkh94r1BE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113401667285-mbuc9n2c7gstdalejk780l4024v3fam6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
