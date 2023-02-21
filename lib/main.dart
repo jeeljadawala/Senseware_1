@@ -123,12 +123,13 @@ import 'package:vibration/vibration.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:senseware/login.dart';
 import 'package:senseware/signup.dart';
+import 'introduction_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MaterialApp(home : new RegistrationScreen()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false,home : new IntroductionPage()));
 }
 
 class MyApp extends StatefulWidget {
