@@ -40,7 +40,7 @@ Color title = Colors.deepOrange.shade800;
 
               ),
             ),
-
+/*
 Positioned(bottom: MediaQuery.of(context).size.height * .65,
     //left: MediaQuery.of(context).size.width * 0.4,
     right: MediaQuery.of(context).size.width * 0.3,
@@ -55,10 +55,10 @@ Positioned(bottom: MediaQuery.of(context).size.height * .65,
       ],
     )),
 
-
+*/
 
             Positioned(
-                bottom: MediaQuery.of(context).size.height * .2,
+                bottom: MediaQuery.of(context).size.height * .3,
                 //left: MediaQuery.of(context).size.width * 0.4,
                 right: MediaQuery.of(context).size.width * 0.2,
                 //top: MediaQuery.of(context).size.width * 0.01,
