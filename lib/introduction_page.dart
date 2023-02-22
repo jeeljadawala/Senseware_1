@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:senseware/main.dart';
+import 'package:senseware/signup.dart';
 
 
 
@@ -36,7 +37,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => MyApp()),
+      MaterialPageRoute(builder: (_) => RegistrationScreen()),
     );
   }
 

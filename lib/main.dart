@@ -124,13 +124,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:senseware/login.dart';
 import 'package:senseware/signup.dart';
 import 'introduction_page.dart';
-import 'signupUI.dart';
+import 'welcomepage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MaterialApp(debugShowCheckedModeBanner: false,home : new IntroductionPage()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false,home : new HalfImage()));
 }
 
 class MyApp extends StatefulWidget {
