@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:senseware/introduction_page.dart';
+import 'loginUI.dart';
 
 class HalfImage extends StatelessWidget {
   const HalfImage({Key? key}) : super(key: key);
