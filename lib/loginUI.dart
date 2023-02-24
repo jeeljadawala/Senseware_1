@@ -51,18 +51,193 @@ class _LoginScreenState extends State<LoginScreen> {
 
         ),
       ),
-              Positioned(bottom: MediaQuery.of(context).size.height * .75,
+              Positioned(bottom: MediaQuery.of(context).size.height * .4,
                   left: MediaQuery.of(context).size.width * 0.25,
-                 // right: MediaQuery.of(context).size.width * 0.1,
+                 //right: MediaQuery.of(context).size.width * 0.1,
                   //top: MediaQuery.of(context).size.width * 0.01,
 
-                  width: MediaQuery.of(context).size.height/2,
+                  width: MediaQuery.of(context).size.height/1,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [ Align(alignment: Alignment.centerLeft,child: Text("Welcome Back!",
                         style: TextStyle(fontSize: 30
                         )),
                     ),SizedBox(height: MediaQuery.of(context).size.width/10,),
 
+                      Row(
+                        children: [
+                          Image.asset(
+                            "assets/login_page.png",
+                            height: 200,
+                            width: MediaQuery.of(context).size.height,
+                            alignment: AlignmentDirectional.centerStart,
+                          ),
+                        ],
+                      ),
+SizedBox(height: MediaQuery.of(context).size.width * .2,),
+
+                   // TextFormField(
+                   //        cursorColor: Colors.black,
+                   //
+                   //        autocorrect: true,
+                   //        keyboardType: TextInputType.emailAddress,
+                   //        onChanged: (value) {
+                   //          email = value;
+                   //          //Do something with the user input.
+                   //        },
+                   //        // textAlign: TextAlign.center,
+                   //        decoration: InputDecoration(
+                   //          fillColor: Colors.white,
+                   //          filled: true,
+                   //          contentPadding:EdgeInsets.fromLTRB(20.0, 13.0, 0.0, 10.0),
+                   //          // contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+                   //          // prefixIcon: Icon(
+                   //          //   Icons.email,
+                   //          //   color: Colors.grey,
+                   //          // ),
+                   //          // labelText: getTranslated(context, 'Name'),
+                   //          hintText: "Enter your email",
+                   //          hintStyle: TextStyle(
+                   //              fontFamily: "OpenSans",
+                   //              color: Colors.grey,
+                   //              fontWeight: FontWeight.w700),
+                   //          errorBorder: OutlineInputBorder(
+                   //            //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                   //            borderSide: BorderSide(width: 1, color: Colors.white),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //          border: OutlineInputBorder(
+                   //              borderRadius: BorderRadius.circular(100)),
+                   //          focusedBorder: OutlineInputBorder(
+                   //            borderSide: BorderSide(color: Colors.white),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //          enabledBorder: UnderlineInputBorder(
+                   //            borderSide: BorderSide(color: Colors.transparent),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //
+                   //      ),
+                   //    ),
+                   //
+                   //    SizedBox(height: 10.0,),
+                   //
+                   //    Center(
+                   //      child: TextFormField(
+                   //        cursorColor: Colors.black,
+                   //
+                   //        autocorrect: true,
+                   //        obscureText: true,
+                   //        onChanged: (value) {
+                   //          password = value;
+                   //          //Do something with the user input.
+                   //        },
+                   //
+                   //        // textAlign: TextAlign.center,
+                   //        decoration: InputDecoration(
+                   //          fillColor: Colors.white,
+                   //          filled: true,
+                   //          contentPadding:
+                   //          EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 10.0),
+                   //          //  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+                   //
+                   //          // labelText: getTranslated(context, 'Name'),
+                   //          hintText: "Enter your password",
+                   //          hintStyle: TextStyle(
+                   //              fontFamily: "OpenSans",
+                   //              color: Colors.grey,
+                   //              fontWeight: FontWeight.w700),
+                   //          errorBorder: OutlineInputBorder(
+                   //            //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                   //            borderSide: BorderSide(width: 1, color: Colors.white),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //          border: OutlineInputBorder(
+                   //              borderRadius: BorderRadius.circular(100)),
+                   //          focusedBorder: OutlineInputBorder(
+                   //            borderSide: BorderSide(color: Colors.white),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //          enabledBorder: UnderlineInputBorder(
+                   //            borderSide: BorderSide(color: Colors.transparent),
+                   //            borderRadius: BorderRadius.circular(100),
+                   //          ),
+                   //        ),
+                   //      ),
+                   //    ),
+                   //    SizedBox(height: 20,),
+                   //    Align(alignment: Alignment.center,child: Column(
+                   //      children: [
+                   //        Text("Forgot Password",
+                   //            style: TextStyle(fontSize: 16,color: textcolor
+                   //            )),
+                   //        SizedBox(height: MediaQuery.of(context).size.width/15,),
+                   //        Row(
+                   //
+                   //          children: [
+                   //            TextButton(
+                   //              onPressed: ()  {
+                   //                setState(() {
+                   //                  showSpinner = true;
+                   //                });
+                   //                try {
+                   //                  print(email +""+password);
+                   //                  final user =  _auth.signInWithEmailAndPassword(
+                   //                      email: email, password: password);
+                   //                  print(user);
+                   //                  if (user != null && email!="" && password!="") {
+                   //                    print(user);
+                   //                    Navigator.push(
+                   //                      context,
+                   //                      MaterialPageRoute(builder: (context) {
+                   //                        return MyApp();
+                   //                      }),
+                   //                    );print("user!=null");
+                   //                  }
+                   //                  else{
+                   //                    print("invalid");
+                   //                  }
+                   //
+                   //                } catch (e) {
+                   //                  print(e);
+                   //                }
+                   //                setState(() {
+                   //                  showSpinner = false;
+                   //                });
+                   //              },
+                   //              child: Padding(
+                   //                padding: const EdgeInsets.only(top: 7.0,bottom: 7.0,left: 100.0,right: 100.0),
+                   //                child: Text("Sign In"),
+                   //              ),
+                   //              style: TextButton.styleFrom(
+                   //                  foregroundColor: Colors.white,
+                   //                  backgroundColor: Colors.deepOrange.shade800,
+                   //                  textStyle:
+                   //                  const TextStyle(fontSize: 24, fontStyle: FontStyle.normal)),
+                   //
+                   //
+                   //            ),
+                   //          ],
+                   //        ),
+                   //
+                   //        SizedBox(height: 10,),
+                   //        Align(alignment: Alignment.center,child: Column(
+                   //          children: [
+                   //            Text("Don't have an account ? Sign Up",
+                   //                style: TextStyle(fontSize: 16,color: textcolor
+                   //                )),
+                   //
+                   //          ],
+                   //        ),
+                   //        ),
+                   //
+                   //
+                   //      ],
+                   //    ),
+                   //
+                   //
+                   //
+                   //    ),
 
 
 
@@ -70,169 +245,185 @@ class _LoginScreenState extends State<LoginScreen> {
                   )),
 
               Positioned(bottom: MediaQuery.of(context).size.height * .1,
-                  left: MediaQuery.of(context).size.width * 0.07,
-                  // right: MediaQuery.of(context).size.width * 0.1,
+                  left: MediaQuery.of(context).size.width * 0.1,
+                 //  right: MediaQuery.of(context).size.width * 0.15,
                   //top: MediaQuery.of(context).size.width * 0.01,
 
-                  width: MediaQuery.of(context).size.height/2,
+                  width: MediaQuery.of(context).size.height/2.5,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                          Image.asset(
-                            "assets/login_page.png",
-                            height: 200,
-                            width: MediaQuery.of(context).size.height,
-                          ),
+                          //
+                          // Image.asset(
+                          //   "assets/login_page.png",
+                          //   height: 200,
+                          //   width: MediaQuery.of(context).size.height,
+                          // ),
                 SizedBox(height: 10.0,),
+ Center(
+                                 child: TextFormField(
 
-                Center(
-                  child: TextFormField(
-                    cursorColor: Colors.black,
+                                   cursorColor: Colors.black,
 
-                    autocorrect: true,
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
+                                   autocorrect: true,
+                                   keyboardType: TextInputType.emailAddress,
+                                   onChanged: (value) {
                       email = value;
-                      //Do something with the user input.
-                    },
-                    // textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      contentPadding:
-                      EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 10.0),
-                      //  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
-                      // prefixIcon: Icon(
-                      //   Icons.email,
-                      //   color: Colors.grey,
-                      // ),
-                      // labelText: getTranslated(context, 'Name'),
-                      hintText: "Enter your email",
-                      hintStyle: TextStyle(
-                          fontFamily: "OpenSans",
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w700),
-                      errorBorder: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                        borderSide: BorderSide(width: 1, color: Colors.white),
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100)),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                  ),
-                ),
+                                     //Do something with the user input.
+                                   },
+                                   // textAlign: TextAlign.center,
+                                   decoration: InputDecoration(
+                                     fillColor: Colors.white,
+                                     filled: true,
+                                     contentPadding:
+                                     EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 10.0),
+                                     //  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+                                     // prefixIcon: Icon(
+                                     //   Icons.email,
+                                     //   color: Colors.grey,
+                                     // ),
+                                     // labelText: getTranslated(context, 'Name'),
+                                     hintText: "Enter your email",
+                                     hintStyle: TextStyle(
+                                         fontFamily: "OpenSans",
+                                         color: Colors.grey,
+                                         fontWeight: FontWeight.w700),
+                                     errorBorder: OutlineInputBorder(
+                                       //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                                       borderSide: BorderSide(width: 1, color: Colors.white),
+                                       borderRadius: BorderRadius.circular(100),
+                                     ),
+                                     border: OutlineInputBorder(
+                                         borderRadius: BorderRadius.circular(100)),
+                                     focusedBorder: OutlineInputBorder(
+                                       borderSide: BorderSide(color: Colors.white),
+                                       borderRadius: BorderRadius.circular(100),
+                                     ),
+                                     enabledBorder: UnderlineInputBorder(
+                                       borderSide: BorderSide(color: Colors.transparent),
+                                       borderRadius: BorderRadius.circular(100),
+                                     ),
+                                   ),
+                                 ),
+                               ),
+               
+                                     SizedBox(height: 10.0,),
+               
+                                     Container(
+                                       width: MediaQuery.of(context).size.width,
+                                       child: TextFormField(
+                                         cursorColor: Colors.black,
 
-                      SizedBox(height: 10.0,),
-
-                      Center(
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-
-                          autocorrect: true,
+                                         autocorrect: true,
                           obscureText: true,
-                          onChanged: (value) {
-                            password = value;
-                            //Do something with the user input.
+                                         onChanged: (value) {
+                                           password = value;
+                                           //Do something with the user input.
                           },
 
-                          // textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            contentPadding:
-                            EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 10.0),
-                            //  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+                                         // textAlign: TextAlign.center,
+                                         decoration: InputDecoration(
+                                           fillColor: Colors.white,
+                                           filled: true,
+                                           contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 13.0, 10.0, 10.0),
+                                           //  contentPadding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
 
-                            // labelText: getTranslated(context, 'Name'),
-                            hintText: "Enter your password",
-                            hintStyle: TextStyle(
-                                fontFamily: "OpenSans",
-                                color: Colors.grey,
+                                           // labelText: getTranslated(context, 'Name'),
+                                           hintText: "Enter your password",
+                                           hintStyle: const TextStyle(
+                                               fontFamily: "OpenSans",
+                                               color: Colors.grey,
                                 fontWeight: FontWeight.w700),
-                            errorBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                              borderSide: BorderSide(width: 1, color: Colors.white),
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100)),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                      Align(alignment: Alignment.center,child: Column(
-                        children: [
-                          Text("Forgot Password",
-                              style: TextStyle(fontSize: 16,color: textcolor
-                              )),
-                          SizedBox(height: MediaQuery.of(context).size.width/15,),
-                          Center(
-                            child: TextButton(
-                                onPressed: ()  {
-                                  setState(() {
-                                    showSpinner = true;
-                                  });
-                                  try {
-                                    print(email +""+password);
-                                    final user =  _auth.signInWithEmailAndPassword(
-                                        email: email, password: password);
-                                    print(user);
-                                    if (user != null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) {
-                                          return MyApp();
-                                        }),
-                                      );
-                                    }print("user!=null");
+                                           errorBorder: OutlineInputBorder(
+                                             //   borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                                             borderSide: BorderSide(width: 1, color: Colors.white),
+                                             borderRadius: BorderRadius.circular(100),
+                                           ),
+                                           border: OutlineInputBorder(
+                                               borderRadius: BorderRadius.circular(100)),
+                                           focusedBorder: OutlineInputBorder(
+                                             borderSide: BorderSide(color: Colors.white),
+                                             borderRadius: BorderRadius.circular(100),
+                                           ),
+                                           enabledBorder: UnderlineInputBorder(
+                                             borderSide: BorderSide(color: Colors.transparent),
+                                             borderRadius: BorderRadius.circular(100),
+                                           ),
+                                         ),
+                                       ),
+                                     ),
+                                     SizedBox(height: 20,),
+                                     Align(alignment: Alignment.center,child:
+                                     Column(
 
-                                  } catch (e) {
-                                    print(e);
-                                  }
-                                  setState(() {
-                                    showSpinner = false;
-                                  });
-                                },
-                                child: Padding(
-                                padding: const EdgeInsets.only(top: 7.0,bottom: 7.0,left: 100.0,right: 100.0),
-                                child: Text("Sign In"),
-                              ),
-                              style: TextButton.styleFrom(
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.deepOrange.shade800,
-                                  textStyle:
+                                       children: [
+                                         Row(
+                                           mainAxisAlignment: MainAxisAlignment.center,
+                                           children: [
+                                             Text("Forgot Password",
+                                                 style: TextStyle(fontSize: 16,color: textcolor
+                                                 )),
+                                           ],
+                                         ),
+                                         SizedBox(height: MediaQuery.of(context).size.width/15,),
+                                         Center(
+                                           child: Row(
+                                               mainAxisAlignment: MainAxisAlignment.center,
+                                             children: [
+                                               TextButton(
+                                                   onPressed: () async {
+                                                     setState(() {
+                                                       showSpinner = true;
+                                                     });
+                                                     try {
+                                    final user = await _auth.signInWithEmailAndPassword(
+                                                           email: email, password: password);
+                                                       if (user != null) {
+                                                         Navigator.push(
+                                                             context,
+                                                             MaterialPageRoute(
+                                                                 builder: (BuildContext context) => MyApp()));; }
+                                                       print("user!=null");
+
+                                                     } catch (e) {
+                                                       print(e);
+                                                     }
+                                                     setState(() {
+                                                       showSpinner = false;
+                                                     });
+                                                   },
+                                                   child: Padding(
+                                                   padding: const EdgeInsets.only(top: 7.0,bottom: 7.0,left: 80.0,right: 80.0),
+                                                   child: Text("Sign In"),
+                                                 ),
+                                                 style: TextButton.styleFrom(
+                                                     foregroundColor: Colors.white,
+                                                     backgroundColor: Colors.deepOrange.shade800,
+                                                     textStyle:
                                   const TextStyle(fontSize: 24, fontStyle: FontStyle.normal)),
 
 
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Align(alignment: Alignment.center,child: Column(
-                            children: [
-                              Text("Don't have an account ? Sign Up",
-                                  style: TextStyle(fontSize: 16,color: textcolor
-                                  )),
+                                               ),
+                                             ],
+                                           ),
+                                         ),
 
+                          SizedBox(height: 10,),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Align(alignment: Alignment.center,child: Column(
+                                children: [
+                                  Text("Don't have an account ? Sign Up",
+                                      style: TextStyle(fontSize: 16,color: textcolor
+                                      )),
+
+                                ],
+                      ),
+                      ),
                             ],
-                      ),
-                      ),
+                          ),
 
 
                     ],
