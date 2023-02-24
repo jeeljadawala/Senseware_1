@@ -185,19 +185,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(height: MediaQuery.of(context).size.width/15,),
                           Center(
                             child: TextButton(
-                                onPressed: () async {
+                                onPressed: ()  {
                                   setState(() {
                                     showSpinner = true;
                                   });
                                   try {
-                                    final user = await _auth.signInWithEmailAndPassword(
+                                    print(email +""+password);
+                                    final user =  _auth.signInWithEmailAndPassword(
                                         email: email, password: password);
+                                    print(user);
                                     if (user != null) {
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) => MyApp()));; }
-                                    print("user!=null");
+                                        context,
+                                        MaterialPageRoute(builder: (context) {
+                                          return MyApp();
+                                        }),
+                                      );
+                                    }print("user!=null");
 
                                   } catch (e) {
                                     print(e);
