@@ -128,11 +128,13 @@ import 'package:senseware/SignupUI.dart';
 import 'introduction_page.dart';
 import 'welcomepage.dart';
 
+//Color textcolor = Colors.deepOrange.shade800;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const MaterialApp(debugShowCheckedModeBanner: false,home : RegistrationScreen()));
+  runApp(const MaterialApp(debugShowCheckedModeBanner: false,home : WelcomePage()));
 }
 
 class MyApp extends StatefulWidget {
@@ -272,26 +274,30 @@ class _MyAppState extends State<MyApp> {
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 44.0,
-                color: Colors.teal,
+                color: Colors.deepOrange,
                 fontWeight: FontWeight.bold),
           ),
         ),
-        IconButton(
-          padding:
-              const EdgeInsets.only(left: 80, right: 80, top: 60, bottom: 0),
-          icon: _isRecording
-              ? const Icon(Icons.stop_circle)
-              : const Icon(Icons.play_circle_fill),
-          color: _isRecording ? Colors.red[400] : Colors.green[400],
-          iconSize: 150,
-          onPressed:_isRecording ? stop : start,
+        Padding(
+          padding: const EdgeInsets.only(left: 60,right: 60),
+          child: IconButton(
+            padding:
+                const EdgeInsets.only(left: 80, right: 80, top: 60, bottom: 0),
+            icon: _isRecording
+                ? const Icon(Icons.stop_circle)
+                : const Icon(Icons.play_circle_fill),
+            color: _isRecording ? Colors.red[400] : Colors.green[400],
+            iconSize: 150,
+            onPressed:_isRecording ? stop : start,
+          ),
         ),
         Container(
             margin: const EdgeInsets.all(10),
             child: Column(children: [
               Container(
+                padding: EdgeInsets.fromLTRB(80, 10, 70, 0),
                 child: Text(_isRecording ? "OFF" : "ON",
-                    style: TextStyle(fontSize: 30, color: Colors.white30)),
+                    style: TextStyle(fontSize: 30, color: Colors.black38)),
                 //margin: EdgeInsets.only(top: 10),
               ),
             ]))
@@ -299,10 +305,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[900],
+        //backgroundColor: Colors.grey[900],
         body: Container(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
