@@ -123,7 +123,8 @@ import 'package:vibration/vibration.dart';
 import 'package:permission_handler/permission_handler.dart';
 //import 'package:senseware/login.dart';
 import 'package:senseware/loginUI.dart';
-import 'package:senseware/signup.dart';
+//import 'package:senseware/signup.dart';
+import 'package:senseware/SignupUI.dart';
 import 'introduction_page.dart';
 import 'welcomepage.dart';
 
@@ -131,7 +132,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MaterialApp(debugShowCheckedModeBanner: false,home : new HalfImage()));
+  runApp(const MaterialApp(debugShowCheckedModeBanner: false,home : RegistrationScreen()));
 }
 
 class MyApp extends StatefulWidget {
