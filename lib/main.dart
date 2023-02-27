@@ -279,10 +279,10 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 60,right: 60),
+          padding: const EdgeInsets.only(left: 60,right: 70),
           child: IconButton(
             padding:
-                const EdgeInsets.only(left: 80, right: 80, top: 60, bottom: 0),
+                const EdgeInsets.only(left: 60, right: 100, top: 60, bottom: 0),
             icon: _isRecording
                 ? const Icon(Icons.stop_circle)
                 : const Icon(Icons.play_circle_fill),

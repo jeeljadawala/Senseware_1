@@ -22,9 +22,9 @@ class WelcomePage extends StatelessWidget {
                 // // top: constraints.maxHeight * .1, // you may need to change value
                 // bottom: constraints.maxHeight * .7,
 
-                bottom: MediaQuery.of(context).size.height * .72,
-                left: -MediaQuery.of(context).size.width * 0.4,
-                right: MediaQuery.of(context).size.width * 0.5,
+                bottom: MediaQuery.of(context).size.height * .74,
+                left: -MediaQuery.of(context).size.width * 0.5,
+                right: MediaQuery.of(context).size.width * 0.4,
                 //  top: MediaQuery.of(context).size.width * 0.01,
 
                 //width: MediaQuery.of(context).size.height/2,
@@ -36,7 +36,7 @@ class WelcomePage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  bottom: MediaQuery.of(context).size.height * .55,
+                  bottom: MediaQuery.of(context).size.height * .6,
                   //left: MediaQuery.of(context).size.width * 0.4,
                   right: MediaQuery.of(context).size.width * 0.3,
                   //top: MediaQuery.of(context).size.width * 0.01,
@@ -47,7 +47,7 @@ class WelcomePage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 70,),
                         child: Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Text("Welcome to,",
                               style: TextStyle(fontSize: 30)),
                         ),
@@ -127,8 +127,8 @@ class WelcomePage extends StatelessWidget {
 */
 
               Positioned(
-                bottom: MediaQuery.of(context).size.height * .15,
-                left: MediaQuery.of(context).size.width * 0.1,
+                bottom: MediaQuery.of(context).size.height * .2,
+                left: MediaQuery.of(context).size.width * 0.08,
                 // right: MediaQuery.of(context).size.width * 0.2,
                 //top: MediaQuery.of(context).size.width * 0.01,
 
@@ -205,7 +205,7 @@ class WelcomePage extends StatelessWidget {
                                   top: 7.0,
                                   bottom: 7.0,
                                   left: 80.0,
-                                  right: 80.0),
+                                  right: 70.0),
                               child: Text("Get Started"),
                             ),
                           ),

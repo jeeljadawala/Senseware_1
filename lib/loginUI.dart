@@ -224,12 +224,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                             MainAxisAlignment.center,
                                         children: [
                                           TextButton(
-                                            onPressed: () async {
+                                            onPressed: ()  {
                                               setState(() {
                                                 showSpinner = true;
                                               });
                                               try {
-                                                final user = await _auth
+                                                final user =  _auth
                                                     .signInWithEmailAndPassword(
                                                         email: email,
                                                         password: password);
