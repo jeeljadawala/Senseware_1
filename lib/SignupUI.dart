@@ -25,9 +25,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
         //backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
+
         body: LayoutBuilder(
             builder: (context, constraints) => Stack(
                   alignment: Alignment.center,
+
                   children: [
                     Positioned(
                       // because it is beyond width
@@ -35,12 +37,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       // right: constraints.maxWidth * .4,
                       // top: constraints.maxHeight * .1, // you may need to change value
                       // bottom: constraints.maxHeight * .7,
+left: -MediaQuery.of(context).size.width * 0.5,
 
-                      bottom: MediaQuery.of(context).size.height * .60,
-                      left: -MediaQuery.of(context).size.width * 0.5,
+                    bottom: MediaQuery.of(context).size.height * .60,
+                      // bottom : 500.0,
+                      // right: 90,
                       //right: MediaQuery.of(context).size.width * 0.1,
                       //  top: MediaQuery.of(context).size.width * 0.01,
-                      width: MediaQuery.of(context).size.height / 2,
                       child: SingleChildScrollView(
                         keyboardDismissBehavior:
                             ScrollViewKeyboardDismissBehavior.onDrag,

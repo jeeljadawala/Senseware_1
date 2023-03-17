@@ -23,7 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
           child: LayoutBuilder(
-              builder: (context, constraints) => Stack(children: [
+              builder: (context, constraints) => Stack(
+                  alignment: Alignment.center,
+                  children: [
                     Positioned(
                       // because it is beyond width
                       // left: -constraints.maxWidth * .4,
@@ -32,8 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       // bottom: constraints.maxHeight * .7,
 
                       bottom: MediaQuery.of(context).size.height * .75,
-                      left: -MediaQuery.of(context).size.width * 0.5,
-                      //right: MediaQuery.of(context).size.width * 0.1,
+                      left: -MediaQuery.of(context).size.width * 0.6,
+                      //right: MediaQuery.o f(context).size.width * 0.1,
                       //  top: MediaQuery.of(context).size.width * 0.01,
                       width: MediaQuery.of(context).size.height / 2,
                       child: Image.asset(
