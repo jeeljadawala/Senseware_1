@@ -354,7 +354,6 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: SizedBox(
                                   width: 300,
-                                  height: 300,
                                   child: Column(
                                     children: [ Container(
 
@@ -376,8 +375,14 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(fontSize: 30, color: Colors.black38)),
                     //margin: EdgeInsets.only(top: 10),
                   ),
-                                        ],
-                                      ),
+                  Row(children: [Icon(Icons.arrow_circle_left_outlined,color: Colors.grey,size: 70.0,),
+                    SizedBox(width: 140.0,),
+                    Icon(Icons.arrow_circle_right_outlined,color: Colors.grey,size: 70.0,)
+                  ],),
+                  Icon(Icons.arrow_circle_down_outlined,color: Colors.grey,size: 70.0,)
+
+                ],
+                ),
 
                                   ),
     ]  )

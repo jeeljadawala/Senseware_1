@@ -1,95 +1,98 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
-//
-// import 'package:senseware/shared_pref.dart';
-// import 'localization_helper.dart';
-// import 'local_provider.dart';
-// import 'supported_locale.dart';
-//
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:riverpod/riverpod.dart';
+import 'package:senseware/shared_pref.dart';
+import 'localization_helper.dart';
+import 'local_provider.dart';
+import 'supported_locale.dart';
+
+
 // void main() async{
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await AppSharedPreference.init();
 //   runApp(ProviderScope(child: LocalizationDemo()));
 //
 // }
-//
-// class LocalizationDemo extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer(
-//       builder: (BuildContext context,
-//           T Function<T>(ProviderBase<Object, T>) watch, Widget child) {
-//         final locale = watch(localeProvider);
-//         return MaterialApp(
-//           title: 'Localization Demo',
-//           debugShowCheckedModeBanner: false,
-//           theme: ThemeData(
-//             primarySwatch: Colors.blue,
-//             visualDensity: VisualDensity.adaptivePlatformDensity,
-//           ),
-//           locale: locale,
-//           supportedLocales: [
-//             Locale('en', 'US'),
-//             Locale('fr', 'FR'),
-//           ],
-//           localizationsDelegates: [
-//             GlobalCupertinoLocalizations.delegate,
-//             GlobalMaterialLocalizations.delegate,
-//             GlobalWidgetsLocalizations.delegate,
-//             LocalizationHelper.delegate
-//           ],
-//           home: child,
-//         );
-//       },
-//       child: HomePage(),
-//     );
-//   }
-// }
-//
-// class HomePage extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('${LocalizationHelper.of(context)?.appName}'),
-//         actions: [
-//           PopupMenuButton<SupportedLocale>(
-//             itemBuilder: (context) {
-//               return SupportedLocale.values
-//                   .map<PopupMenuEntry<SupportedLocale>>((e) => PopupMenuItem(
-//                 child: Text('${e.name}'),
-//                 value: e,
-//               ))
-//                   .toList();
-//             },
-//             onSelected: (locale) {
-//               context.read(localeProvider.notifier).changeLanguage(locale);
-//             },
-//           )
-//         ],
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: <Widget>[
-//             Spacer(
-//               flex: 3,
-//             ),
-//             Spacer(),
-//             Text('${LocalizationHelper.of(context)?.description}',
-//                 textAlign: TextAlign.start,
-//                 style: Theme.of(context).textTheme.headline5),
-//             Spacer(
-//               flex: 3,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+
+class LocalizationDemo extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(
+      builder: (BuildContext context,
+          T Function<T>(ProviderBase<Object, T>) watch, Widget child) {
+        final locale = watch(localeProvider);
+        return MaterialApp(
+          title: 'Localization Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          locale: locale,
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('fr', 'FR'),
+          ],
+          localizationsDelegates: const [
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            LocalizationHelper.delegate
+          ],
+          home: child,
+        );
+      },
+      child: MenuPage(),
+    );
+  }
+}
+
+class MenuPage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${LocalizationHelper.of(context)?.appName}'),
+        actions: [
+          PopupMenuButton<SupportedLocale>(
+            itemBuilder: (context) {
+              return SupportedLocale.values
+                  .map<PopupMenuEntry<SupportedLocale>>((e) => PopupMenuItem(
+                child: Text('${e.name}'),
+                value: e,
+              ))
+                  .toList();
+            },
+            onSelected: (locale) {
+              context.read(localeProvider.notifier).changeLanguage(locale);
+            },
+          )
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Spacer(
+              flex: 3,
+            ),
+            const Spacer(),
+            Text('${LocalizationHelper.of(context)?.description}',
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.headline5),
+            const Spacer(
+              flex: 3,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
 // import 'package:flutter/material.dart';
@@ -118,13 +121,13 @@
 //         // is not restarted.
 //         primarySwatch: Colors.blue,
 //       ),
-//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+//       home: const MyMenuPage(title: 'Flutter Demo Home Page'),
 //     );
 //   }
 // }
 //
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
+// class MyMenuPage extends StatefulWidget {
+//   const MyMenuPage({super.key, required this.title});
 //
 //   // This widget is the home page of your application. It is stateful, meaning
 //   // that it has a State object (defined below) that contains fields that affect
@@ -138,10 +141,10 @@
 //   final String title;
 //
 //   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
+//   State<MyMenuPage> createState() => _MyMenuPageState();
 // }
 //
-// class _MyHomePageState extends State<MyHomePage> {
+// class _MyMenuPageState extends State<MyMenuPage> {
 //   int _counter = 0;
 //
 //   void _incrementCounter() {
@@ -165,7 +168,7 @@
 //     // than having to individually change instances of widgets.
 //     return Scaffold(
 //       appBar: AppBar(
-//         // Here we take the value from the MyHomePage object that was created by
+//         // Here we take the value from the MyMenuPage object that was created by
 //         // the App.build method, and use it to set our appbar title.
 //         title: Text(widget.title),
 //       ),
@@ -208,43 +211,43 @@
 //   }
 // }
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:noise_meter/noise_meter.dart';
-import 'package:flutter/material.dart';
-import 'package:senseware/languageMainScreen.dart';
-import 'package:senseware/languagepage.dart';
-import 'dart:async';
-import 'package:vibration/vibration.dart';
-import 'package:permission_handler/permission_handler.dart';
-//import 'package:senseware/login.dart';
-import 'package:senseware/loginUI.dart';
-//import 'package:senseware/signup.dart';
-import 'package:senseware/SignupUI.dart';
-import 'introduction_page.dart';
-import 'welcomepage.dart';
-import 'dart:math';
-import 'languageMainScreen.dart';
-//Color textcolor = Colors.deepOrange.shade800;
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-
-  // runApp(EasyLocalization(
-  //   supportedLocales: [
-  //     Locale('en', 'US'),
-  //     Locale('en', 'FR')
-  //   ],
-  //   path: 'assets/translations',
-  //   saveLocale: true,
-  //   fallbackLocale: Locale('en', 'US'),
-  //   child: LanguageMainScreen(),
-  // ));
-//runApp(MyApp());
- // runApp(const MaterialApp(debugShowCheckedModeBanner: false,home : WelcomePage()));
-
-
-
-}
+// import 'package:easy_localization/easy_localization.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:noise_meter/noise_meter.dart';
+// import 'package:flutter/material.dart';
+// import 'package:senseware/languageMainScreen.dart';
+// import 'package:senseware/languagepage.dart';
+// import 'dart:async';
+// import 'package:vibration/vibration.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// //import 'package:senseware/login.dart';
+// import 'package:senseware/loginUI.dart';
+// //import 'package:senseware/signup.dart';
+// import 'package:senseware/SignupUI.dart';
+// import 'introduction_page.dart';
+// import 'welcomepage.dart';
+// import 'dart:math';
+// import 'languageMainScreen.dart';
+// //Color textcolor = Colors.deepOrange.shade800;
+//
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await EasyLocalization.ensureInitialized();
+//
+//   // runApp(EasyLocalization(
+//   //   supportedLocales: [
+//   //     Locale('en', 'US'),
+//   //     Locale('en', 'FR')
+//   //   ],
+//   //   path: 'assets/translations',
+//   //   saveLocale: true,
+//   //   fallbackLocale: Locale('en', 'US'),
+//   //   child: LanguageMainScreen(),
+//   // ));
+// //runApp(MyApp());
+//  // runApp(const MaterialApp(debugShowCheckedModeBanner: false,home : WelcomePage()));
+//
+//
+//
+// }

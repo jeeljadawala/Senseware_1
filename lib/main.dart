@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:senseware/pages/landingpage.dart';
+import 'package:senseware/shared_pref.dart';
 
-void main() {
+import 'new.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppSharedPreference.init();
+ // runApp(ProviderScope(child: LocalizationDemo()));
+
+
   runApp(const MyApp());
 }
 
@@ -17,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const HomePage()
     );
   }
 }

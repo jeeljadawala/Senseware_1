@@ -48,8 +48,10 @@ dependencies:
   get_it: ^7.2.0
   easy_localization: ^3.0.1
   flutter_fft: ^1.0.2+6
-  riverpod: ^2.3.2
+  #riverpod: ^2.3.2
+  flutter_riverpod: ^0.14.0+3
   shared_preferences: ^2.0.18
+
   #flutter_sound: ^9.2.13
 
 dev_dependencies:
