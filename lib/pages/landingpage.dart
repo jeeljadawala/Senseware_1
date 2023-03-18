@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:noise_meter/noise_meter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:vibration/vibration.dart';
-
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,9 +14,17 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-void popupSettings() {}
-
 class _HomePageState extends State<HomePage> {
+  final List<bool> _selections = <bool>[true, false];
+  final List locale = [
+    {'name': '0', 'locale': const Locale('en', 'US')},
+    {'name': '1', 'locale': const Locale('fr', 'FR')}
+  ];
+
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
 
   Future askPermission() async {
     // print('In Microphone permission method');
@@ -31,7 +39,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _noiseMeter = new NoiseMeter(onError);
-
   }
 
   @override
@@ -53,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       Vibration.vibrate(
           pattern: [700, 1000, 700, 1000, 700, 1000, 700, 1000, 700, 1000]);
       Fluttertoast.showToast(
-          msg: "Low risk detected",
+          msg: "lowrisk".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -63,7 +70,7 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
       double angle = calculateSoundDirectionAngle(sampleValues);
       print("---------Angle-------------" + noiseReading.toString());
@@ -113,7 +120,7 @@ class _HomePageState extends State<HomePage> {
         200
       ]);
       Fluttertoast.showToast(
-          msg: "Medium risk detected",
+          msg: "medrisk".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -123,7 +130,7 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
       double angle = calculateSoundDirectionAngle(sampleValues);
       print("----------------------" + noiseReading.toString());
@@ -174,7 +181,7 @@ class _HomePageState extends State<HomePage> {
         50,
       ]);
       Fluttertoast.showToast(
-          msg: "High risk detected",
+          msg: "highrisk".tr,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -184,7 +191,7 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
       double angle = calculateSoundDirectionAngle(sampleValues);
       print("----------------------" + noiseReading.toString());
@@ -198,10 +205,11 @@ class _HomePageState extends State<HomePage> {
     double micDistance = 0.1; // distance between the two microphones in meters
     double soundSpeed = 343; // speed of sound in meters per second
     double sampleRate = 44100; // sample rate in Hz
-    double angleRadians = atan2(soundSamples[0].toDouble(), soundSamples[1].toDouble());
+    double angleRadians =
+        atan2(soundSamples[0].toDouble(), soundSamples[1].toDouble());
     double soundTimeDiff = angleRadians / (2 * pi) * (1 / sampleRate);
     double soundDistanceDiff = soundTimeDiff * soundSpeed;
-    double soundAngle = atan2(soundDistanceDiff, micDistance)*180/pi;
+    double soundAngle = atan2(soundDistanceDiff, micDistance) * 180 / pi;
     return soundAngle;
   }
 
@@ -232,24 +240,6 @@ class _HomePageState extends State<HomePage> {
       print('stopRecorder error: $err');
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -320,7 +310,47 @@ class _HomePageState extends State<HomePage> {
                   height: size.height - 80,
                   child: Stack(
                     children: <Widget>[
-                      const HeroWidget(),
+                      Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: ToggleButtons(
+                                    constraints: const BoxConstraints(
+                                      minHeight: 30,
+                                      minWidth: 40,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(18)),
+                                    isSelected: _selections,
+                                    onPressed: (int index) {
+                                      setState(() {
+                                        // The button that is tapped is set to true, and the others to false.
+                                        for (int i = 0;
+                                            i < _selections.length;
+                                            i++) {
+                                          _selections[i] = i == index;
+                                        }
+                                      });
+                                      updateLanguage(locale[index]['locale']);
+                                    },
+                                    children: const [Text('EN'), Text('FR')],
+                                  )),
+                            ),
+                            const Icon(
+                              Icons.account_circle,
+                              size: 60,
+                            ),
+                            Text(
+                              'welcome'.tr,
+                              style: const TextStyle(fontSize: 20),
+                            )
+                          ],
+                        ),
+                      ),
                       Container(
                         margin: EdgeInsets.only(top: size.height * 0.23),
                         // height: 500,
@@ -350,45 +380,69 @@ class _HomePageState extends State<HomePage> {
                             //   ),
                             // ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 120.0),
-                              child: Center(
-                                child: SizedBox(
-                                  width: 300,
-                                  child: Column(
-                                    children: [ Container(
-
-                                      child: IconButton(
-
-                                        icon: _isRecording
-                                            ? const Icon(Icons.stop_circle)
-                                            : const Icon(Icons.play_circle_fill),
-                                        color: _isRecording ? Colors.red[400] : Colors.green[400],
-                                        iconSize: 100,
-                                        onPressed:_isRecording ? stop : start,
-                                      ),
-                                    ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: Column(children: [
-                  Container(
-                    child: Text(_isRecording ? "OFF" : "ON",
-                        style: TextStyle(fontSize: 30, color: Colors.black38)),
-                    //margin: EdgeInsets.only(top: 10),
-                  ),
-                  Row(children: [Icon(Icons.arrow_circle_left_outlined,color: Colors.grey,size: 70.0,),
-                    SizedBox(width: 140.0,),
-                    Icon(Icons.arrow_circle_right_outlined,color: Colors.grey,size: 70.0,)
-                  ],),
-                  Icon(Icons.arrow_circle_down_outlined,color: Colors.grey,size: 70.0,)
-
-                ],
-                ),
-
-                                  ),
-    ]  )
-                              ),
-    )
-    )
+                                padding: const EdgeInsets.only(top: 120.0),
+                                child: Center(
+                                  child: SizedBox(
+                                      width: 300,
+                                      child: Column(children: [
+                                        Container(
+                                          child: IconButton(
+                                            icon: _isRecording
+                                                ? const Icon(Icons.stop_circle)
+                                                : const Icon(
+                                                    Icons.play_circle_fill),
+                                            color: _isRecording
+                                                ? Colors.red[400]
+                                                : Colors.green[400],
+                                            iconSize: 100,
+                                            onPressed:
+                                                _isRecording ? stop : start,
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.all(10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                    _isRecording
+                                                        ? "off".tr
+                                                        : "on".tr,
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.black38)),
+                                                //margin: EdgeInsets.only(top: 10),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons
+                                                        .arrow_circle_left_outlined,
+                                                    color: Colors.grey,
+                                                    size: 70.0,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 140.0,
+                                                  ),
+                                                  Icon(
+                                                    Icons
+                                                        .arrow_circle_right_outlined,
+                                                    color: Colors.grey,
+                                                    size: 70.0,
+                                                  )
+                                                ],
+                                              ),
+                                              Icon(
+                                                Icons
+                                                    .arrow_circle_down_outlined,
+                                                color: Colors.grey,
+                                                size: 70.0,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ])),
+                                ))
                           ],
                         ),
                       ),
@@ -402,34 +456,6 @@ class _HomePageState extends State<HomePage> {
           // Lower Content Widget
         ],
       ), //One
-    );
-  }
-}
-
-class HeroWidget extends StatelessWidget {
-  const HeroWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
-            Icon(
-              Icons.account_circle,
-              size: 100,
-            ),
-            Text(
-              'Welcome, User',
-              style: TextStyle(fontSize: 20),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
