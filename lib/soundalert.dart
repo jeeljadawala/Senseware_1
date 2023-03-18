@@ -45,7 +45,7 @@ class _SoundAlertState extends State<SoundAlert> {
         this._isRecording = true;
       }
     });
-    print("----------------------" + noiseReading.toString());
+    //print("----------------------" + noiseReading.toString());
     if (noiseReading.maxDecibel > 80 && noiseReading.maxDecibel < 92.0) {
       Vibration.vibrate(
           pattern: [700, 1000, 700, 1000, 700, 1000, 700, 1000, 700, 1000]);
@@ -59,12 +59,15 @@ class _SoundAlertState extends State<SoundAlert> {
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      int randomNumber = random.nextInt(120);
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
-      print("---------Angle-------------" + noiseReading.toString());
-      print(angle);
+      int direction = calculateSoundDirection(sampleValues);
+      print("----------------------" + noiseReading.toString());
+      print("Random Number: "+randomNumber.toString());
+      if(direction == 0)
+        print("Left");
+      else
+        print("Right");
     }
     if (noiseReading.maxDecibel > 92 && noiseReading.maxDecibel < 100.0) {
       Vibration.vibrate(pattern: [
@@ -119,12 +122,15 @@ class _SoundAlertState extends State<SoundAlert> {
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      int randomNumber = random.nextInt(120);
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
+      int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print(angle);
+      print("Random Number: "+randomNumber.toString());
+      if(direction == 0)
+        print("Left");
+      else
+        print("Right");
     }
     if (noiseReading.maxDecibel > 100.0) {
       Vibration.vibrate(pattern: [
@@ -180,26 +186,24 @@ class _SoundAlertState extends State<SoundAlert> {
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
-      print("Random Number: "+randomNumber.toString());
+      int randomNumber = random.nextInt(120);
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
+      int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print(angle);
+      print("Random Number: "+randomNumber.toString());
+      if(direction == 0)
+        print("Left");
+      else
+        print("Right");
     }
   }
 
-  double calculateSoundDirectionAngle(List<double> soundSamples) {
-    // Convert audio data to frequency domain using FFT
+  int calculateSoundDirection(List<double> soundSamples) {
+    if(soundSamples[0] > soundSamples[1])
+      return 0;
+    else
+      return 1;
 
-    double micDistance = 0.1; // distance between the two microphones in meters
-    double soundSpeed = 343; // speed of sound in meters per second
-    double sampleRate = 44100; // sample rate in Hz
-    double angleRadians = atan2(soundSamples[0].toDouble(), soundSamples[1].toDouble());
-    double soundTimeDiff = angleRadians / (2 * pi) * (1 / sampleRate);
-    double soundDistanceDiff = soundTimeDiff * soundSpeed;
-    double soundAngle = atan2(soundDistanceDiff, micDistance)*180/pi;
-    return soundAngle;
   }
 
   void onError(Object error) {
