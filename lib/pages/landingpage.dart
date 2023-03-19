@@ -32,6 +32,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool _isRecording = false;
+  bool _left = false;
+  bool _right = false;
+  Color _iconColor = Colors.red;
+  bool _highRisk=false;
   StreamSubscription<NoiseReading>? _noiseSubscription;
   late NoiseMeter _noiseMeter;
 
@@ -39,6 +43,18 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _noiseMeter = new NoiseMeter(onError);
+    Timer.periodic(Duration(seconds: _highRisk? 15:10), (timer) {
+      setState(() {
+        if (_left) {
+          _left = false;
+        }
+        if (_right){
+          _right = false;
+        }
+      }
+      );
+    });
+
   }
 
   @override
@@ -55,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         this._isRecording = true;
       }
     });
-    print("----------------------" + noiseReading.toString());
+    //print("----------------------" + noiseReading.toString());
     if (noiseReading.maxDecibel > 80 && noiseReading.maxDecibel < 85.0) {
       Vibration.vibrate(
           pattern: [700, 1000, 700, 1000, 700, 1000, 700, 1000, 700, 1000]);
@@ -70,11 +86,14 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
-      print("---------Angle-------------" + noiseReading.toString());
-      print(angle);
+      int direction = calculateSoundDirection(sampleValues);
+      print("----------------------" + noiseReading.toString());
+      print("Random Number: "+randomNumber.toString());
+      if(direction==0)
+        this._left = true;
+      else
+        this._right = true;
     }
     if (noiseReading.maxDecibel > 85 && noiseReading.maxDecibel < 90.0) {
       Vibration.vibrate(pattern: [
@@ -130,11 +149,14 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
+      int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print(angle);
+      print("Random Number: "+randomNumber.toString());
+      if(direction==0)
+        this._left = true;
+      else
+        this._right = true;
     }
     if (noiseReading.maxDecibel > 90.0) {
       Vibration.vibrate(pattern: [
@@ -191,26 +213,22 @@ class _HomePageState extends State<HomePage> {
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
       int randomNumber = random.nextInt(100);
-      print("Random Number: " + randomNumber.toString());
       sampleValues.add(randomNumber.toDouble());
-      double angle = calculateSoundDirectionAngle(sampleValues);
+      int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print(angle);
+      print("Random Number: "+randomNumber.toString());
+      if(direction==0)
+        this._left = true;
+      else
+        this._right = true;
     }
   }
 
-  double calculateSoundDirectionAngle(List<double> soundSamples) {
-    // Convert audio data to frequency domain using FFT
-
-    double micDistance = 0.1; // distance between the two microphones in meters
-    double soundSpeed = 343; // speed of sound in meters per second
-    double sampleRate = 44100; // sample rate in Hz
-    double angleRadians =
-        atan2(soundSamples[0].toDouble(), soundSamples[1].toDouble());
-    double soundTimeDiff = angleRadians / (2 * pi) * (1 / sampleRate);
-    double soundDistanceDiff = soundTimeDiff * soundSpeed;
-    double soundAngle = atan2(soundDistanceDiff, micDistance) * 180 / pi;
-    return soundAngle;
+  int calculateSoundDirection(List<double> soundSamples) {
+    if(soundSamples[0] > soundSamples[1])
+      return 0;
+    else
+      return 1;
   }
 
   void onError(Object error) {
