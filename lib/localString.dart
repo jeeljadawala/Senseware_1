@@ -8,7 +8,7 @@ class LocaleString extends Translations {
           'on': 'Tap to turn ON detection',
           'off': 'Tap to turn OFF the detection',
           'lowrisk': 'Low risk detected',
-          'midrisk': 'Medium risk detected',
+          'medrisk': 'Medium risk detected',
           'highrisk': 'High risk detected'
         },
         'fr_FR': {
@@ -16,7 +16,7 @@ class LocaleString extends Translations {
           'on': 'Appuyez pour activer la détection',
           'off': 'Appuyez pour désactiver la détection',
           'lowrisk': 'Faible risque détecté',
-          'midrisk': 'Risque moyen détecté',
+          'medrisk': 'Risque moyen détecté',
           'highrisk': 'Risque élevé détecté'
         }
       };
