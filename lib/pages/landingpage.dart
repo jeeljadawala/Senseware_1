@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
+      int randomNumber = random.nextInt(5)+80;
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
@@ -143,12 +143,12 @@ class _HomePageState extends State<HomePage> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red[300],
+          backgroundColor: Colors.red[100],
           textColor: Colors.white,
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
+      int randomNumber = random.nextInt(10)+80;
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
           fontSize: 20.0);
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(100);
+      int randomNumber = random.nextInt(10)+90;
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
@@ -348,8 +348,8 @@ class _HomePageState extends State<HomePage> {
                                       setState(() {
                                         // The button that is tapped is set to true, and the others to false.
                                         for (int i = 0;
-                                            i < _selections.length;
-                                            i++) {
+                                        i < _selections.length;
+                                        i++) {
                                           _selections[i] = i == index;
                                         }
                                       });
@@ -408,13 +408,13 @@ class _HomePageState extends State<HomePage> {
                                             icon: _isRecording
                                                 ? const Icon(Icons.stop_circle)
                                                 : const Icon(
-                                                    Icons.play_circle_fill),
+                                                Icons.play_circle_fill),
                                             color: _isRecording
                                                 ? Colors.red[400]
                                                 : Colors.green[400],
                                             iconSize: 100,
                                             onPressed:
-                                                _isRecording ? stop : start,
+                                            _isRecording ? stop : start,
                                           ),
                                         ),
                                         Container(
@@ -431,31 +431,11 @@ class _HomePageState extends State<HomePage> {
                                                         color: Colors.black38)),
                                                 //margin: EdgeInsets.only(top: 10),
                                               ),
-                                              Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons
-                                                        .arrow_circle_left_outlined,
-                                                    color: Colors.grey,
-                                                    size: 70.0,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 140.0,
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .arrow_circle_right_outlined,
-                                                    color: Colors.grey,
-                                                    size: 70.0,
-                                                  )
-                                                ],
-                                              ),
-                                              Icon(
-                                                Icons
-                                                    .arrow_circle_down_outlined,
-                                                color: Colors.grey,
-                                                size: 70.0,
-                                              )
+                                              SizedBox(height: 50,),
+                                              Row(children: [Icon(Icons.arrow_circle_left_outlined,color: _left ? _iconColor : Colors.grey,size: 70.0,),
+                                                SizedBox(width: 140.0,),
+                                                Icon(Icons.arrow_circle_right_outlined,color: _right ? _iconColor : Colors.grey,size: 70.0,)
+                                              ],),
                                             ],
                                           ),
                                         ),
