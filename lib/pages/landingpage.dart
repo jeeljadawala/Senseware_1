@@ -35,8 +35,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _noiseMeter = new NoiseMeter(onError);
-
-    //periodic color change to indicate direction
     Timer.periodic(Duration(seconds: _highRisk? 15:10), (timer) {
       setState(() {
         if (_left) {
@@ -57,7 +55,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  //once microphone starts receiving data
   void onData(NoiseReading noiseReading) {
     Random random = new Random();
 
@@ -66,12 +63,10 @@ class _HomePageState extends State<HomePage> {
         this._isRecording = true;
       }
     });
-
-    //classify sound on the basis on decibel
+    //print("----------------------" + noiseReading.toString());
     if (noiseReading.maxDecibel > 80 && noiseReading.maxDecibel < 85.0) {
       Vibration.vibrate(
-          pattern: [700, 1000, 700, 1000, 700, 1000, 700, 1000, 700, 1000]); //vibrational pattern for low risk
-      //toast message
+          pattern: [700, 1000, 700, 1000, 700, 1000, 700, 1000, 700, 1000]);
       Fluttertoast.showToast(
           msg: "Low risk detected",
           toastLength: Toast.LENGTH_SHORT,
@@ -80,23 +75,18 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.grey,
           textColor: Colors.black87,
           fontSize: 20.0);
-
-      //find direction of danger
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(5)+80;
+      int randomNumber = random.nextInt(100);
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print("Random Number: "+randomNumber.toString());//simulated value
-      print("Direction: "+direction.toString());
+      print("Random Number: "+randomNumber.toString());
       if(direction==0)
         this._left = true;
       else
         this._right = true;
     }
-
-    //vibrational pattern for medium risk
     if (noiseReading.maxDecibel > 85 && noiseReading.maxDecibel < 90.0) {
       Vibration.vibrate(pattern: [
         200,
@@ -140,31 +130,26 @@ class _HomePageState extends State<HomePage> {
         200,
         200
       ]);
-      //toast message
       Fluttertoast.showToast(
           msg: "Medium risk detected",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red[100],
+          backgroundColor: Colors.red[300],
           textColor: Colors.white,
           fontSize: 20.0);
-      //find direction of danger
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(10)+80;
+      int randomNumber = random.nextInt(100);
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
-      print("Random Number: "+randomNumber.toString());//simulated value
-      print("Direction: "+direction.toString());
+      print("Random Number: "+randomNumber.toString());
       if(direction==0)
         this._left = true;
       else
         this._right = true;
     }
-
-    //vibrational pattern for high risk
     if (noiseReading.maxDecibel > 90.0) {
       Vibration.vibrate(pattern: [
         50,
@@ -209,8 +194,6 @@ class _HomePageState extends State<HomePage> {
         50,
         50,
       ]);
-
-      //toast message
       Fluttertoast.showToast(
           msg: "High risk detected",
           toastLength: Toast.LENGTH_SHORT,
@@ -219,16 +202,13 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.red[300],
           textColor: Colors.white,
           fontSize: 20.0);
-
-      //find direction of danger
       List<double> sampleValues = [];
       sampleValues.add(noiseReading.maxDecibel);
-      int randomNumber = random.nextInt(10)+90; //simulated value
+      int randomNumber = random.nextInt(100);
       sampleValues.add(randomNumber.toDouble());
       int direction = calculateSoundDirection(sampleValues);
       print("----------------------" + noiseReading.toString());
       print("Random Number: "+randomNumber.toString());
-      print("Direction: "+direction.toString());
       if(direction==0)
         this._left = true;
       else
@@ -248,7 +228,6 @@ class _HomePageState extends State<HomePage> {
     _isRecording = false;
   }
 
-  //microphone on
   void start() {
     askPermission();
     try {
@@ -258,7 +237,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  //microphone off
   void stop() async {
     try {
       if (_noiseSubscription != null) {
@@ -390,7 +368,6 @@ class _HomePageState extends State<HomePage> {
                             //   ),
                             // ),
                             Padding(
-<<<<<<< Updated upstream
                               padding: const EdgeInsets.only(top: 120.0),
                               child: Center(
                                 child: SizedBox(
@@ -430,51 +407,6 @@ class _HomePageState extends State<HomePage> {
                               ),
     )
     )
-=======
-                                padding: const EdgeInsets.only(top: 120.0),
-                                child: Center(
-                                  child: SizedBox(
-                                      width: 300,
-                                      child: Column(children: [
-                                        Container(
-                                          child: IconButton(
-                                            icon: _isRecording
-                                                ? const Icon(Icons.stop_circle)
-                                                : const Icon(
-                                                    Icons.play_circle_fill),
-                                            color: _isRecording
-                                                ? Colors.red[400]
-                                                : Colors.green[400],
-                                            iconSize: 100,
-                                            onPressed:
-                                                _isRecording ? stop : start,
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: const EdgeInsets.all(10),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Text(
-                                                    _isRecording
-                                                        ? "off".tr
-                                                        : "on".tr,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.black38)),
-                                                //margin: EdgeInsets.only(top: 10),
-                                              ),
-                                              SizedBox(height: 50,),
-                                              Row(children: [Icon(Icons.arrow_circle_left_outlined,color: _left ? _iconColor : Colors.grey,size: 70.0,),
-                                                SizedBox(width: 140.0,),
-                                                Icon(Icons.arrow_circle_right_outlined,color: _right ? _iconColor : Colors.grey,size: 70.0,)
-                                              ],),
-                                            ],
-                                          ),
-                                        ),
-                                      ])),
-                                ))
->>>>>>> Stashed changes
                           ],
                         ),
                       ),

@@ -1,2 +1,15 @@
 sensware.ase@gmail.com
 Sensware@123
+
+Kindly review and revert .
+
+
+
+-----------------------------
+Tasks
+
+Error messages
+Toast messages
+Password validation
+App loader
+Email verification
