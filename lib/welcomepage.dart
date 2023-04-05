@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:senseware/introduction_page.dart';
+import 'package:senseware/pages/introduction_page.dart';
 import 'loginUI.dart';
 
 class WelcomePage extends StatelessWidget {
